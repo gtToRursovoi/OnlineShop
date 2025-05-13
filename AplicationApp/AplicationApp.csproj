@@ -9,7 +9,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Folder Include="ViewModel\ViewModelPage\" />
     <Folder Include="View\Pagess\" />
+    <Folder Include="Assets\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Database\Database.csproj" />
   </ItemGroup>
 
 </Project>
