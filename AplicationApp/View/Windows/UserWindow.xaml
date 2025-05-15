@@ -5,8 +5,34 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AplicationApp.View.Windows"
         mc:Ignorable="d"
-        Title="UserWindow" Height="450" Width="800">
+        Title="UserWindow" Height="610" Width="1100">
     <Grid>
-        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="8*"/>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Grid.Column="0">
+            <StackPanel Orientation="Horizontal">
+                <Image Source="\Assets\Image\OlineStore.jpg" Width="130"/>
+                <TextBox Width="240" Margin="300,0,0,0" Text="Search"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="1">
+            <StackPanel>
+                <Button Width="150" Margin="5" Background="Black" Foreground="White" Content="Товары" Click="OpenPRoductPage"/>
+                <Button Width="150" Margin="5" Background="Black" Foreground="White" Content="Корзина" Click="OpenBasketPAge"/>
+                <Button Width="150" Margin="5" Background="Black" Foreground="White" Content="Заказы" Click="OpenOrderClick"/>
+                <Button Width="150"  Background="Black" Margin="0,250,0,0" Foreground="White" Content="Выход"/>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Row="1" Grid.Column="0">
+            <StackPanel>
+                <Frame x:Name="MainFrame"/>
+            </StackPanel>
+        </Grid>
     </Grid>
 </Window>

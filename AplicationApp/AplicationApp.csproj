@@ -9,13 +9,17 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="ViewModel\ViewModelPage\" />
-    <Folder Include="View\Pagess\" />
-    <Folder Include="Assets\" />
+    <None Remove="Assets\Image\OnlineStore.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Database\Database.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Assets\Image\OnlineStore.jpg">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
   </ItemGroup>
 
 </Project>

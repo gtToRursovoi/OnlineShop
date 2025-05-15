@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AplicationApp.View.Pagess.User;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,21 @@ namespace AplicationApp.View.Windows
         public UserWindow()
         {
             InitializeComponent();
+        }
+
+        private void OpenPRoductPage(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ProductPageUser(MainFrame));
+        }
+
+        private void OpenBasketPAge(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new basketPageUser(MainFrame));
+        }
+
+        private void OpenOrderClick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new OrdersPageUser(MainFrame));
         }
     }
 }

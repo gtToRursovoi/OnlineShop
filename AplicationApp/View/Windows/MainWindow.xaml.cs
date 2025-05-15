@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using AplicationApp.View.Pagess;
+using System.Text;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -19,6 +20,11 @@ namespace AplicationApp
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void OpenProductClick(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new ProductPage(MainFrame));
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using AplicationApp.View.Windows;
+﻿using AplicationApp.Services;
+using AplicationApp.View.Windows;
 using AplicationApp.ViewModel.Other;
 using Database.Context;
 using System;
@@ -52,29 +53,27 @@ namespace AplicationApp.ViewModel.ViewModelWindow
                 return;
             }
 
-            // Сохраняем сессию (если используешь)
-           
+            // Сохраняем данные в SessionService
+            SessionService.CurrentUserId = currentUser.UserId;
+            SessionService.CurrentUserLogin = currentUser.Username;
 
-            // Проверяем роль и открываем нужное окно
             if (currentUser.Role == "admin")
             {
                 OnSuccess?.Invoke("Добро пожаловать, Админ!");
                 OpenAdminWindow?.Invoke();
+
                 MainWindow mainWindow = new MainWindow();
                 mainWindow.Show();
                 Application.Current.Windows[0].Close();
-
             }
             else
             {
                 OnSuccess?.Invoke("Добро пожаловать!");
-              UserWindow userWindow = new UserWindow();
+                UserWindow userWindow = new UserWindow();
                 userWindow.Show();
                 Application.Current.Windows[0].Close();
-
             }
         }
-
     }
 
 }
