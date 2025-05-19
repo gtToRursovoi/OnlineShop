@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AplicationApp.ViewModel.ViewModelWindow
@@ -60,12 +61,14 @@ namespace AplicationApp.ViewModel.ViewModelWindow
             if (Password != ConfirmPassword)
             {
                 StatusMessage = "Пароли не совпадают.";
+                MessageBox.Show("Пароли не совпадают.");
                 return;
             }
 
             if (string.IsNullOrWhiteSpace(Username) || string.IsNullOrWhiteSpace(Email) || string.IsNullOrWhiteSpace(Password))
             {
                 StatusMessage = "Все поля обязательны.";
+                MessageBox.Show("Все поля обязательны.");
                 return;
             }
 
@@ -74,6 +77,7 @@ namespace AplicationApp.ViewModel.ViewModelWindow
             if (db.Users.Any(u => u.Username == Username || u.Email == Email))
             {
                 StatusMessage = "Пользователь с таким логином или email уже существует.";
+                MessageBox.Show("Пользователь с таким логином или email уже существует.");
                 return;
             }
 
@@ -88,6 +92,7 @@ namespace AplicationApp.ViewModel.ViewModelWindow
             db.SaveChanges();
 
             StatusMessage = "Регистрация прошла успешно.";
+            MessageBox.Show("Регистрация прошла успешно.");
             // Можно здесь вызвать переход на LoginView
         }
     }

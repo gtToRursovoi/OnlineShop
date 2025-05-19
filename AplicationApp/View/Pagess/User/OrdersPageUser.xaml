@@ -7,27 +7,64 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid Margin="10">
-        <TextBlock Text="Мои заказы" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="12*"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0">
+            <TextBlock Text="Мои заказы" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
+        </StackPanel>
+       
 
-        <ListView ItemsSource="{Binding Orders}">
+        <ListView ItemsSource="{Binding Orders}" Margin="10" Background="White" Grid.Row="1">
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderThickness="1" BorderBrush="Gray" Padding="10" Margin="5">
+                    <Border BorderThickness="1" BorderBrush="#CCCCCC" CornerRadius="10" Padding="20" Margin="10" Background="#FAFAFA" >
                         <StackPanel>
-                            <TextBlock Text="{Binding OrderDate, StringFormat=Дата заказа: {0:dd.MM.yyyy HH:mm}}" FontWeight="Bold"/>
-                            <TextBlock Text="{Binding Status, StringFormat=Статус: {0}}" />
-                            <TextBlock Text="{Binding TotalAmount, StringFormat=Сумма: {0:C}}" FontWeight="Bold" Margin="0,0,0,10"/>
+                            <!-- Основная информация о заказе -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,10">
+                                <TextBlock Text="{Binding OrderDate, StringFormat=Дата заказа: {0:dd.MM.yyyy HH:mm}}"
+                            FontWeight="Bold"
+                            FontSize="16"
+                            Foreground="#333"
+                            Margin="0,0,20,0"/>
+                                <TextBlock Text="{Binding Status, StringFormat=Статус: {0}}"
+                            FontSize="16"
+                            Foreground="#666"
+                            Margin="0,0,20,0"/>
+                                <TextBlock Text="{Binding TotalAmount, StringFormat=Сумма: {0:C}}"
+                            FontWeight="Bold"
+                            FontSize="16"
+                            Foreground="#007A00"/>
+                            </StackPanel>
 
-                            <TextBlock Text="Товары в заказе:" FontWeight="Bold" Margin="0,5,0,3"/>
+                            <!-- Заголовок товаров -->
+                            <TextBlock Text="Товары в заказе:" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
 
+                            <!-- Список товаров -->
                             <ItemsControl ItemsSource="{Binding OrderItems}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border BorderThickness="0,0,0,1" BorderBrush="LightGray" Padding="5">
-                                            <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Product.Name}" FontWeight="SemiBold" Width="200"/>
-                                                <TextBlock Text="{Binding Quantity, StringFormat=Кол-во: {0}}" Width="100"/>
-                                                <TextBlock Text="{Binding PricePerUnit, StringFormat=Цена за ед.: {0:C}}" Width="150"/>
+                                        <Border BorderThickness="1" BorderBrush="#E0E0E0" CornerRadius="8" Padding="10" Margin="0,5,0,5" Background="#FFFFFF">
+                                            <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
+                                                <!-- Название товара -->
+                                                <TextBlock Text="{Binding Product.Name}"
+                                            FontWeight="SemiBold"
+                                            FontSize="14"
+                                            Foreground="#333"
+                                            Width="250"/>
+
+                                                <!-- Количество -->
+                                                <TextBlock Text="{Binding Quantity, StringFormat=Кол-во: {0}}"
+                                            FontSize="14"
+                                            Width="120"
+                                            Foreground="#555"/>
+
+                                                <!-- Цена -->
+                                                <TextBlock Text="{Binding PricePerUnit, StringFormat=Цена за ед.: {0:C}}"
+                                            FontSize="14"
+                                            Width="180"
+                                            Foreground="#555"/>
                                             </StackPanel>
                                         </Border>
                                     </DataTemplate>

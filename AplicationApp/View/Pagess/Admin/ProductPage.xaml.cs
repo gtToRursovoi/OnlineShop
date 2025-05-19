@@ -1,4 +1,5 @@
-﻿using AplicationApp.View.Windows.admin;
+﻿using AplicationApp.Services;
+using AplicationApp.View.Windows.admin;
 using AplicationApp.ViewModel.ViewModelWindow;
 using System;
 using System.Collections.Generic;
@@ -14,13 +15,14 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace AplicationApp.View.Pagess
 {
     /// <summary>
     /// Логика взаимодействия для ProductPage.xaml
     /// </summary>
-    public partial class ProductPage : UserControl
+    public partial class ProductPage : UserControl, ISearchablePage
     {
         Frame MainFrame;
         ProductViewModel viewModel;
@@ -30,6 +32,14 @@ namespace AplicationApp.View.Pagess
             MainFrame = mainFrame;
             viewModel = new ProductViewModel();
             this.DataContext = viewModel;
+        }
+
+        public void ApplySearch(string query)
+        {
+            if (DataContext is ProductViewModel vm)
+            {
+                vm.ApplySearch(query);
+            }
         }
 
         private void AddProductButton_Click(object sender, RoutedEventArgs e)

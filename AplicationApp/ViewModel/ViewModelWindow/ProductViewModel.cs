@@ -1,4 +1,5 @@
-﻿using AplicationApp.View.Windows.admin;
+﻿using AplicationApp.Services;
+using AplicationApp.View.Windows.admin;
 using AplicationApp.ViewModel.Other;
 using Database.Context;
 using Database.Service;
@@ -14,7 +15,7 @@ using System.Windows.Input;
 
 namespace AplicationApp.ViewModel.ViewModelWindow
 {
-    public class ProductViewModel : BaseViewModel
+    public class ProductViewModel : BaseViewModel, ISearchablePage
     {
         private readonly SqlServerDbContext _context;
         private bool _isEditMode;
@@ -51,6 +52,9 @@ namespace AplicationApp.ViewModel.ViewModelWindow
         }
 
         public ObservableCollection<Product> Products { get; set; }
+        public ObservableCollection<Product> AllProducts { get; set; } = new ObservableCollection<Product>();
+        public ObservableCollection<Product> FilteredProducts { get; set; } = new ObservableCollection<Product>();
+
 
         public ICommand SaveCommand { get; set; }
         public ICommand CloseCommand { get; set; }
@@ -80,17 +84,16 @@ namespace AplicationApp.ViewModel.ViewModelWindow
 
             SaveCommand = new RelayCommand(SaveProductExecute);
             CloseCommand = new RelayCommand(obj => CloseWindow?.Invoke());
-            LoadProductsCommand = new RelayCommand(LoadProducts); // Привязываем команду для загрузки продуктов
+            LoadProductsCommand = new RelayCommand(LoadProducts); 
             DeleteCommand = new RelayCommand(DeleteProductExecute);
-            SelectImageCommand = new RelayCommand(SelectImageExecute); // Команда для выбора изображения
+            SelectImageCommand = new RelayCommand(SelectImageExecute); 
 
-            // Автоматическая загрузка продуктов при создании ViewModel
             LoadProducts(null);
         }
 
         private void SaveProductExecute(object obj)
         {
-            // Проверка на пустые поля
+            
             if (string.IsNullOrWhiteSpace(Name) || Price <= 0 || Stock < 0)
             {
                 OnError?.Invoke("Пожалуйста, заполните все поля.");
@@ -161,22 +164,25 @@ namespace AplicationApp.ViewModel.ViewModelWindow
 
         private void LoadProducts(object obj)
         {
-            // Загружаем продукты из базы данных
             var productsList = _context.Products.ToList();
-            // Очистить текущий список
-            Products.Clear();
+            AllProducts.Clear();
+            FilteredProducts.Clear();
 
             if (productsList != null)
             {
                 foreach (var product in productsList)
                 {
-                    Products.Add(product);  // Добавляем каждый продукт в коллекцию
+                    AllProducts.Add(product);
+                    FilteredProducts.Add(product);
                 }
             }
             else
             {
                 OnError?.Invoke("Не удалось загрузить продукты.");
             }
+
+            OnPropertyChanged(nameof(AllProducts));
+            OnPropertyChanged(nameof(FilteredProducts));
         }
 
         // Метод для открытия диалога выбора изображения
@@ -199,6 +205,22 @@ namespace AplicationApp.ViewModel.ViewModelWindow
             };
 
             return dlg.ShowDialog() == true ? dlg.FileName : null;
+        }
+        public void ApplySearch(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                FilteredProducts = new ObservableCollection<Product>(AllProducts);
+            }
+            else
+            {
+                FilteredProducts = new ObservableCollection<Product>(
+                    AllProducts.Where(p =>
+                        p.Name.Contains(query, StringComparison.OrdinalIgnoreCase) ||
+                        p.Description.Contains(query, StringComparison.OrdinalIgnoreCase)));
+            }
+
+            OnPropertyChanged(nameof(FilteredProducts));
         }
     }
 }

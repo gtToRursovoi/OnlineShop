@@ -1,6 +1,8 @@
-﻿using AplicationApp.View.Pagess.User;
+﻿using AplicationApp.Services;
+using AplicationApp.View.Pagess.User;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +25,7 @@ namespace AplicationApp.View.Windows
         public UserWindow()
         {
             InitializeComponent();
+          
         }
 
         private void OpenPRoductPage(object sender, RoutedEventArgs e)
@@ -38,6 +41,47 @@ namespace AplicationApp.View.Windows
         private void OpenOrderClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new OrdersPageUser(MainFrame));
+        }
+
+        private void AnloginClick(object sender, RoutedEventArgs e)
+        {
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
+            this.Close();
+        }
+
+        private void Hyperlink_RequestNavigate(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new ProcessStartInfo
+            {
+                FileName = e.Uri.AbsoluteUri,
+                UseShellExecute = true
+            });
+            e.Handled = true;
+        }
+
+        private void OpenTGK(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
+        {
+            System.Diagnostics.Process.Start(new ProcessStartInfo
+            {
+                FileName = e.Uri.AbsoluteUri,
+                UseShellExecute = true
+            });
+            e.Handled = true;
+        }
+
+        private void OpenProfilePage(object sender, RoutedEventArgs e)
+        {
+            MainFrame.Navigate(new UserProfilePage(MainFrame));
+        }
+        private void SearchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string query = (sender as TextBox)?.Text ?? string.Empty;
+
+            if (MainFrame.Content is Page page && page.DataContext is ISearchablePage searchableViewModel)
+            {
+                searchableViewModel.ApplySearch(query);
+            }
         }
     }
 }

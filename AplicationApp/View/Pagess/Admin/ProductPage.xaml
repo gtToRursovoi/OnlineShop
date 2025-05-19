@@ -14,13 +14,13 @@
         <Grid Grid.Column="0">
             <StackPanel>
                 <Label  Content="СОСУ ХУЙ ЗА ПРОДУКТЫ" HorizontalAlignment="Center" Margin="10"/>
-                <Button Width="140" Margin="3" Background="Beige" Foreground="Black" Content="Добавить" Click="AddProductButton_Click"/>
-                <Button Width="140" Margin="3" Background="Beige" Foreground="Black" Content="Изменить" Click="EditProductButton_Click"/>
-                <Button Width="140" Margin="3" Background="Beige" Foreground="Black" Content="Удалить"/>
+                <Button Width="140" Margin="3" Background="Gray" Foreground="Black" Content="Добавить" Click="AddProductButton_Click"/>
+                <Button Width="140" Margin="3" Background="Gray" Foreground="Black" Content="Изменить" Click="EditProductButton_Click"/>
+                <Button Width="140" Margin="3" Background="Gray" Foreground="Black" Content="Удалить"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1">
-            <ListBox ItemsSource="{Binding Products}"
+            <ListBox ItemsSource="{Binding FilteredProducts}"
          SelectedItem="{Binding SelectedProduct, Mode=TwoWay}"
          Margin="10"
          Height="400"

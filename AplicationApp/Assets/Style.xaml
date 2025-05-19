@@ -80,4 +80,35 @@
         </Style.Triggers>
     </Style>
 
+    <Style TargetType="PasswordBox" >
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="BorderThickness" Value="0"/>
+        <Setter Property="Padding" Value="5,2"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="CaretBrush" Value="Black"/>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="PasswordBox">
+                    <Grid>
+                        <!-- Линия под полем -->
+                        <Border x:Name="Underline" Height="1" Background="Gray" VerticalAlignment="Bottom"/>
+                        <!-- Поле ввода -->
+                        <ScrollViewer x:Name="PART_ContentHost" Margin="0,0,0,3" />
+                    </Grid>
+                    <ControlTemplate.Triggers>
+                        <Trigger Property="IsFocused" Value="True">
+                            <Setter TargetName="Underline" Property="Background" Value="DodgerBlue"/>
+                            <Setter TargetName="Underline" Property="Height" Value="2"/>
+                        </Trigger>
+                        <Trigger Property="IsEnabled" Value="False">
+                            <Setter TargetName="Underline" Property="Background" Value="LightGray"/>
+                            <Setter Property="Foreground" Value="LightGray"/>
+                        </Trigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+
 </ResourceDictionary>

@@ -32,5 +32,12 @@ namespace AplicationApp.View.Windows
             if (DataContext is LoginViewModel vm)
                 vm.Password = ((PasswordBox)sender).Password;
         }
+
+        private void OpenRegWindow(object sender, RoutedEventArgs e)
+        {
+            RegistrationWindow registrationWindow = new RegistrationWindow();
+            registrationWindow.Show();
+            this.Close();
+        }
     }
 }

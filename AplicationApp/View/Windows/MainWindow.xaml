@@ -13,10 +13,10 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <StackPanel Orientation="Horizontal">
-                <Button Content="Продукты" Width="140" Margin="3" Background="Beige" Foreground="Black" Click="OpenProductClick"></Button>
-                <Button Content="Юзеры" Width="140" Margin="3" Background="Beige" Foreground="Black" Click="OpenUserClick"></Button>
-               
-                <Button Content="Заказы" Width="140" Margin="3" Background="Beige" Foreground="Black" Click="OpenOrdersClick"></Button>
+                <Button Content="Продукты" Width="140" Margin="3" Background="Gray" Foreground="Black" Click="OpenProductClick"></Button>
+                <Button Content="Юзеры" Width="140" Margin="3" Background="Gray" Foreground="Black" Click="OpenUserClick"></Button>
+
+                <Button Content="Заказы" Width="140" Margin="3" Background="Gray" Foreground="Black" Click="OpenOrdersClick"></Button>
             
             </StackPanel>
         </Grid>

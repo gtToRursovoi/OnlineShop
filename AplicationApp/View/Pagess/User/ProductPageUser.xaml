@@ -8,28 +8,61 @@
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
 
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
-            <ListBox ItemsSource="{Binding Products}"
-                     VerticalAlignment="Stretch"
-                     HorizontalAlignment="Stretch">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <StackPanel Margin="10">
-                            <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="14"/>
-                            <TextBlock Text="{Binding Description}" FontSize="12"/>
-                            <TextBlock Text="Цена: " FontSize="12"/>
-                            <TextBlock Text="{Binding Price}" FontSize="12"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <!-- Например, заголовок -->
+            <RowDefinition Height="*"/>
+            <!-- Список растягивается и ограничен по высоте -->
+            <RowDefinition Height="Auto"/>
+            <!-- Кнопки или подвал -->
+        </Grid.RowDefinitions>
 
-                           
+        <TextBlock Text="Список товаров" FontSize="20" FontWeight="Bold" Margin="10" Grid.Row="0"/>
 
-                            <Button Content="Добавить в корзину"
-                                    Command="{Binding DataContext.AddToCartCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
-                                    CommandParameter="{Binding}" Margin="0,5"/>
-                        </StackPanel>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
-        </ScrollViewer>
+        <ListBox ItemsSource="{Binding Products}" Margin="10" Grid.Row="1">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="10" Padding="15" Margin="10" Background="#FFFFFF">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+
+                            <!-- Изображение товара -->
+                            <Image Source="{Binding ImageUrl}"
+                           Width="150"
+                           Height="150"
+                           Stretch="UniformToFill"
+                           Margin="0,0,20,0"
+                           ClipToBounds="True" />
+
+                            <!-- Информация о товаре -->
+                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="20" Foreground="#333"/>
+                                <TextBlock Text="{Binding Description}" FontSize="14" TextWrapping="Wrap" Foreground="#555" Margin="0,4,0,4" MaxWidth="500"/>
+                                <TextBlock Text="{Binding Price, StringFormat=Цена: {0:C}}" FontSize="16" Foreground="#007A00" FontWeight="SemiBold"/>
+
+                                <!-- Кнопка добавления в корзину -->
+                                <Button Content="Добавить в корзину"
+                                Command="{Binding DataContext.AddToCartCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
+                                CommandParameter="{Binding}"
+                                Margin="0,10,0,0"
+                                Padding="8,4"
+                                FontSize="14"
+                                Width="160"/>
+                            </StackPanel>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+
+        <!-- Можно добавить что-то внизу -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Grid.Row="2">
+            <Button Content="Обновить" Width="100" Height="30" Background="Gray"/>
+        </StackPanel>
 
 
     </Grid>

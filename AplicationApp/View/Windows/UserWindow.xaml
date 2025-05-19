@@ -5,34 +5,60 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AplicationApp.View.Windows"
         mc:Ignorable="d"
-        Title="UserWindow" Height="810" Width="1300">
-    <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10*"/>
-            <ColumnDefinition Width="2*"/>
-        </Grid.ColumnDefinitions>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="2*"/>
-            <RowDefinition Height="8*"/>
-        </Grid.RowDefinitions>
-        <Grid Grid.Row="0" Grid.Column="0">
-            <StackPanel Orientation="Horizontal">
-                <Image Source="\Assets\Image\OlineStore.jpg" Width="130"/>
-                <TextBox Width="240" Margin="300,0,0,0" Text="Search"/>
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Row="1" Grid.Column="1">
-            <StackPanel>
-                <Button Width="150" Margin="5" Background="Black" Foreground="White" Content="Товары" Click="OpenPRoductPage"/>
-                <Button Width="150" Margin="5" Background="Black" Foreground="White" Content="Корзина" Click="OpenBasketPAge"/>
-                <Button Width="150" Margin="5" Background="Black" Foreground="White" Content="Заказы" Click="OpenOrderClick"/>
-                <Button Width="150"  Background="Black" Margin="0,250,0,0" Foreground="White" Content="Выход"/>
-            </StackPanel>
-        </Grid>
-        <Grid Grid.Row="1" Grid.Column="0">
-            <StackPanel>
+        Title="UserWindow" Height="810" Width="1300" Background="Transparent">
+    <Border Background="#D3D3D3" CornerRadius="0,0,10,10">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="10*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="8*"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Name="txtbFooter" Margin="10">
+                <Hyperlink  TextDecorations="None" 
+                    NavigateUri="https://t.me/raskioxyesos" 
+                        ToolTip="Navigate to web page" RequestNavigate="OpenTGK"> 
+                        <Image  Source="\Assets\Image\ii.png" />
+                </Hyperlink>
+                    </TextBlock>
+                    <TextBox Width="300" Margin="10"
+         TextChanged="SearchTextBox_TextChanged"
+          />
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1">
+                <Button Height="100" Width="100" BorderThickness="0" Click="OpenProfilePage">
+                    <Button.Background>
+                        <ImageBrush ImageSource="\Assets\Image\prof.png"/>
+                    </Button.Background>
+                </Button>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="1">
+                <StackPanel>
+                    <Button Width="190" Height="60" Margin="5" Background="Gray" Foreground="White" Content="Товары" Click="OpenPRoductPage"/>
+                    <Button Width="190" Height="60" Margin="5" Background="Gray" Foreground="White" Content="Корзина" Click="OpenBasketPAge"/>
+                    <Button Width="190" Height="60" Margin="5" Background="Gray" Foreground="White" Content="Заказы" Click="OpenOrderClick"/>
+                    <TextBlock Name="txtbFooterRight" >
+<Hyperlink Name="lnkImg" TextDecorations="None" 
+ NavigateUri="https://1xbet-bsox.top/" 
+ ToolTip="Navigate to web page" RequestNavigate="Hyperlink_RequestNavigate"> 
+    <Image Name="someName" Source="\Assets\Image\i.png" />
+</Hyperlink>
+                    </TextBlock>
+                    <Button Width="190" Height="60"  Background="Gray" Margin="0,200,0,0" Foreground="White" Content="Выход" Click="AnloginClick"/>
+
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Row="1" Grid.Column="0">
+
                 <Frame x:Name="MainFrame"/>
-            </StackPanel>
+
+
+            </Grid>
         </Grid>
-    </Grid>
+    </Border>
 </Window>
