@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AplicationApp"
         mc:Ignorable="d"
-        Title="MainWindow" Height="650" Width="930">
+        Title="MainWindow" Height="650" Width="930"
+        Background="Pink">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -13,11 +14,10 @@
         </Grid.RowDefinitions>
         <Grid Grid.Row="0">
             <StackPanel Orientation="Horizontal">
-                <Button Content="Продукты" Width="140" Margin="3" Background="Gray" Foreground="Black" Click="OpenProductClick"></Button>
-                <Button Content="Юзеры" Width="140" Margin="3" Background="Gray" Foreground="Black" Click="OpenUserClick"></Button>
-
-                <Button Content="Заказы" Width="140" Margin="3" Background="Gray" Foreground="Black" Click="OpenOrdersClick"></Button>
-            
+                <Button Content="Продукты" Width="140" Margin="3" Background="Violet" Foreground="Black" Click="OpenProductClick"></Button>
+                <Button Content="Юзеры" Width="140" Margin="3" Background="Violet" Foreground="Black" Click="OpenUserClick"></Button>
+                <Button Content="Заказы" Width="140" Margin="3" Background="Violet" Foreground="Black" Click="OpenOrdersClick"></Button>
+                <Button Content="Выход" Width="140" Margin="340,0,0,0" Background="Violet" Foreground="Black" Click="ExitClick"></Button>
             </StackPanel>
         </Grid>
         <Grid Grid.Row="1">

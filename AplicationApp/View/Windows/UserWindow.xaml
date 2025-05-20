@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:AplicationApp.View.Windows"
         mc:Ignorable="d"
         Title="UserWindow" Height="810" Width="1300" Background="Transparent">
-    <Border Background="#D3D3D3" CornerRadius="0,0,10,10">
+    <Border Background="Pink" CornerRadius="0,0,10,10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="10*"/>
@@ -25,9 +25,7 @@
                         <Image  Source="\Assets\Image\ii.png" />
                 </Hyperlink>
                     </TextBlock>
-                    <TextBox Width="300" Margin="10"
-         TextChanged="SearchTextBox_TextChanged"
-          />
+                    
                 </StackPanel>
             </Grid>
             <Grid Grid.Row="0" Grid.Column="1">
@@ -39,9 +37,9 @@
             </Grid>
             <Grid Grid.Row="1" Grid.Column="1">
                 <StackPanel>
-                    <Button Width="190" Height="60" Margin="5" Background="Gray" Foreground="White" Content="Товары" Click="OpenPRoductPage"/>
-                    <Button Width="190" Height="60" Margin="5" Background="Gray" Foreground="White" Content="Корзина" Click="OpenBasketPAge"/>
-                    <Button Width="190" Height="60" Margin="5" Background="Gray" Foreground="White" Content="Заказы" Click="OpenOrderClick"/>
+                    <Button Width="190" Height="60" Margin="5" Background="Violet" Foreground="White" Content="Товары" Click="OpenPRoductPage"/>
+                    <Button Width="190" Height="60" Margin="5" Background="Violet" Foreground="White" Content="Корзина" Click="OpenBasketPAge"/>
+                    <Button Width="190" Height="60" Margin="5" Background="Violet" Foreground="White" Content="Заказы" Click="OpenOrderClick"/>
                     <TextBlock Name="txtbFooterRight" >
 <Hyperlink Name="lnkImg" TextDecorations="None" 
  NavigateUri="https://1xbet-bsox.top/" 
@@ -49,7 +47,7 @@
     <Image Name="someName" Source="\Assets\Image\i.png" />
 </Hyperlink>
                     </TextBlock>
-                    <Button Width="190" Height="60"  Background="Gray" Margin="0,200,0,0" Foreground="White" Content="Выход" Click="AnloginClick"/>
+                    <Button Width="190" Height="60"  Background="Violet" Margin="0,200,0,0" Foreground="White" Content="Выход" Click="AnloginClick"/>
 
                 </StackPanel>
             </Grid>

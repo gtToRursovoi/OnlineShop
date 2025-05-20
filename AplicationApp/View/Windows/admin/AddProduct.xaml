@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:AplicationApp.View.Windows.admin"
         mc:Ignorable="d"
-        Title="AddProduct" Height="550" Width="500">
+        Title="AddProduct" Height="550" Width="500"
+        Background="Pink">
     <Grid>
         <StackPanel>
             <Label Content="Имя"/>
@@ -16,8 +17,8 @@
             <TextBox Text="{Binding Price}"/>
             <Label Content="Количество"/>
             <TextBox Text="{Binding Stock}"/>
-            <Button Content="Изображение" Command="{Binding SelectImageCommand}" Background="Gray" Margin="10"/>
-            <Button Content="Сохранить" Command="{Binding SaveCommand}" Background="Gray" Margin="10"/>
+            <Button Content="Изображение" Command="{Binding SelectImageCommand}" Background="Violet" Margin="10"/>
+            <Button Content="Сохранить" Command="{Binding SaveCommand}" Background="Violet" Margin="10"/>
         </StackPanel>
     </Grid>
 </Window>

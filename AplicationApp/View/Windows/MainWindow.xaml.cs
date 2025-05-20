@@ -1,5 +1,6 @@
 ﻿using AplicationApp.View.Pagess;
 using AplicationApp.View.Pagess.Admin;
+using AplicationApp.View.Windows;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -36,6 +37,13 @@ namespace AplicationApp
         private void OpenUserClick(object sender, RoutedEventArgs e)
         {
             MainFrame.Navigate(new AdminUsersPage(MainFrame));  
+        }
+
+        private void ExitClick(object sender, RoutedEventArgs e)
+        {
+            LoginWindow loginWindow = new LoginWindow();
+            loginWindow.Show();
+            this.Close();
         }
     }
 }

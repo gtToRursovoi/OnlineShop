@@ -60,15 +60,7 @@ namespace AplicationApp.View.Windows
             e.Handled = true;
         }
 
-        private void OpenTGK(object sender, System.Windows.Navigation.RequestNavigateEventArgs e)
-        {
-            System.Diagnostics.Process.Start(new ProcessStartInfo
-            {
-                FileName = e.Uri.AbsoluteUri,
-                UseShellExecute = true
-            });
-            e.Handled = true;
-        }
+        
 
         private void OpenProfilePage(object sender, RoutedEventArgs e)
         {
