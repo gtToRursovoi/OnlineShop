@@ -9,6 +9,9 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\Image\Back1.jpg" />
+    <None Remove="Assets\Image\Back2.jpg" />
+    <None Remove="Assets\Image\Back3.jpg" />
     <None Remove="Assets\Image\i.jpg" />
     <None Remove="Assets\Image\i.png" />
     <None Remove="Assets\Image\ii.png" />
@@ -21,6 +24,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\Image\Back1.jpg" />
+    <Resource Include="Assets\Image\Back2.jpg" />
+    <Resource Include="Assets\Image\Back3.jpg" />
     <Resource Include="Assets\Image\i.jpg" />
     <Resource Include="Assets\Image\i.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
