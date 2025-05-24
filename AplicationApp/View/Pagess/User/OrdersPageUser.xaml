@@ -5,71 +5,121 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AplicationApp.View.Pagess.User"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Margin="10">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="12*"/>
-        </Grid.RowDefinitions>
-        <StackPanel Grid.Row="0">
-            <TextBlock Text="Мои заказы" FontSize="24" FontWeight="Bold" Margin="0,0,0,20"/>
-        </StackPanel>
-       
+             d:DesignHeight="450" d:DesignWidth="800"
+             
+             >
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+           
+            <GradientStop Color="#E3D9F9" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Background>
 
-        <ListView ItemsSource="{Binding Orders}" Margin="10" Background="White" Grid.Row="1">
+    <Grid Margin="20" Background="#E6D9F8" >
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <!-- Заголовок -->
+        <TextBlock Text="Мои заказы" 
+                   FontSize="28" 
+                   FontWeight="Bold" 
+                   Foreground="#5D3FD3" 
+                   Margin="0,0,0,20"/>
+
+        <!-- Список заказов -->
+        <ListView ItemsSource="{Binding Orders}" 
+                  Grid.Row="1" 
+                  Background="Transparent"
+                  BorderThickness="0"
+                  Padding="0"
+                  Margin="0">
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Margin" Value="0 10"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Top"/>
+                    <Setter Property="Template">
+                        <Setter.Value>
+                            <ControlTemplate TargetType="ListViewItem">
+                                <Border Background="Transparent" 
+                                        SnapsToDevicePixels="True">
+                                    <ContentPresenter />
+                                </Border>
+                            </ControlTemplate>
+                        </Setter.Value>
+                    </Setter>
+                </Style>
+            </ListView.ItemContainerStyle>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderThickness="1" BorderBrush="#CCCCCC" CornerRadius="10" Padding="20" Margin="10" Background="#FAFAFA" >
+                    <Border Background="White" 
+                            CornerRadius="15" 
+                            Padding="20" 
+                            Effect="{DynamicResource DropShadow}" 
+                            BorderBrush="#D1C4E9" BorderThickness="1">
                         <StackPanel>
-                            <!-- Основная информация о заказе -->
-                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,10">
-                                <TextBlock Text="{Binding OrderDate, StringFormat=Дата заказа: {0:dd.MM.yyyy HH:mm}}"
-                            FontWeight="Bold"
-                            FontSize="16"
-                            Foreground="#333"
-                            Margin="0,0,20,0"/>
-                                <TextBlock Text="{Binding Status, StringFormat=Статус: {0}}"
-                            FontSize="16"
-                            Foreground="#666"
-                            Margin="0,0,20,0"/>
-                                <TextBlock Text="{Binding TotalAmount, StringFormat=Сумма: {0:C}}"
-                            FontWeight="Bold"
-                            FontSize="16"
-                            Foreground="#007A00"/>
+
+                            <!-- Основная информация -->
+                            <StackPanel Orientation="Horizontal" HorizontalAlignment="Stretch" Margin="0,0,0,15">
+                                <TextBlock Text="{Binding OrderDate, StringFormat=Дата заказа: {0:dd.MM.yyyy HH:mm}}" 
+                                           FontWeight="Bold" 
+                                           FontSize="16" 
+                                           Foreground="#4B0082" 
+                                           Margin="0,0,20,0" />
+                                <TextBlock Text="{Binding Status, StringFormat=Статус: {0}}" 
+                                           FontSize="16" 
+                                           Foreground="#7B68EE" 
+                                           Margin="0,0,20,0" />
+                                <TextBlock Text="{Binding TotalAmount, StringFormat=Сумма: {0:C}}" 
+                                           FontWeight="Bold" 
+                                           FontSize="16" 
+                                           Foreground="#228B22" />
                             </StackPanel>
 
                             <!-- Заголовок товаров -->
-                            <TextBlock Text="Товары в заказе:" FontWeight="Bold" FontSize="16" Margin="0,0,0,10"/>
+                            <TextBlock Text="Товары в заказе:" 
+                                       FontWeight="Bold" 
+                                       FontSize="16" 
+                                       Margin="0,0,0,10" 
+                                       Foreground="#5D3FD3" />
 
                             <!-- Список товаров -->
                             <ItemsControl ItemsSource="{Binding OrderItems}">
                                 <ItemsControl.ItemTemplate>
                                     <DataTemplate>
-                                        <Border BorderThickness="1" BorderBrush="#E0E0E0" CornerRadius="8" Padding="10" Margin="0,5,0,5" Background="#FFFFFF">
+                                        <Border BorderThickness="1" 
+                                                BorderBrush="#D1C4E9" 
+                                                CornerRadius="10" 
+                                                Padding="12" 
+                                                Margin="0,5,0,5" 
+                                                Background="#FAFAFA"
+                                                Effect="{DynamicResource DropShadowLight}">
                                             <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                                                <!-- Название товара -->
-                                                <TextBlock Text="{Binding Product.Name}"
-                                            FontWeight="SemiBold"
-                                            FontSize="14"
-                                            Foreground="#333"
-                                            Width="250"/>
-
-                                                <!-- Количество -->
-                                                <TextBlock Text="{Binding Quantity, StringFormat=Кол-во: {0}}"
-                                            FontSize="14"
-                                            Width="120"
-                                            Foreground="#555"/>
-
-                                                <!-- Цена -->
-                                                <TextBlock Text="{Binding PricePerUnit, StringFormat=Цена за ед.: {0:C}}"
-                                            FontSize="14"
-                                            Width="180"
-                                            Foreground="#555"/>
+                                                <TextBlock Text="{Binding Product.Name}" 
+                                                           FontWeight="SemiBold" 
+                                                           FontSize="14" 
+                                                           Foreground="#333" 
+                                                           Width="300" />
+                                                <TextBlock Text="{Binding Quantity, StringFormat=Кол-во: {0}}" 
+                                                           FontSize="14" 
+                                                           Width="130" 
+                                                           Foreground="#555" />
+                                                <TextBlock Text="{Binding PricePerUnit, StringFormat=Цена за ед.: {0:C}}" 
+                                                           FontSize="14" 
+                                                           Width="200" 
+                                                           Foreground="#555" />
                                             </StackPanel>
                                         </Border>
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
+
                         </StackPanel>
                     </Border>
                 </DataTemplate>

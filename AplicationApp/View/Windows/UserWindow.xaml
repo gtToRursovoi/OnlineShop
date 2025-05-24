@@ -36,10 +36,10 @@
 
                 <!-- Right: Navigation -->
                 <StackPanel Grid.Row="1" Grid.Column="1" Margin="10,10,20,20" VerticalAlignment="Top">
-                    <Button  Content="Товары" Click="OpenPRoductPage"/>
-                    <Button  Content="Корзина" Click="OpenBasketPAge"/>
-                    <Button  Content="Заказы" Click="OpenOrderClick"/>
-                    <Button  Content="Выход" Margin="0,100,0,0" Click="AnloginClick"/>
+                    <Button  Content="Товары" Click="OpenPRoductPage" Margin="10" Background="Pink"/>
+                    <Button  Content="Корзина" Click="OpenBasketPAge" Margin="10" Background="Pink"/>
+                    <Button  Content="Заказы" Click="OpenOrderClick" Margin="10" Background="Pink"/>
+                    <Button  Content="Выход" Margin="0,100,0,0" Click="AnloginClick"  Background="Pink"/>
 
                     <Button Width="80" Height="80" BorderThickness="0" Margin="0,40,0,0" HorizontalAlignment="Center" Click="OpenProfilePage">
                         <Button.Background>

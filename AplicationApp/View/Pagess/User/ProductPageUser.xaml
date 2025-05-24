@@ -6,64 +6,97 @@
              xmlns:local="clr-namespace:AplicationApp.View.Pagess.User"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#F7F2FA" Offset="0"/>
+            <GradientStop Color="#E3D9F9" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Background>
     <Grid>
+        <Grid.Background>
+            <!-- Немного более насыщенный светло-фиолетовый фон для содержимого -->
+            <SolidColorBrush Color="#E6D9F8"/>
+        </Grid.Background>
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
-            <!-- Например, заголовок -->
             <RowDefinition Height="*"/>
-            <!-- Список растягивается и ограничен по высоте -->
             <RowDefinition Height="Auto"/>
-            <!-- Кнопки или подвал -->
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Список товаров" FontSize="20" FontWeight="Bold" Margin="10" Grid.Row="0"/>
+        <TextBlock Text="Список товаров"
+                   FontSize="24"
+                   FontWeight="Bold"
+                   Foreground="#5D3FD3"
+                   Margin="20,10"
+                   Grid.Row="0"/>
 
-        <ListBox ItemsSource="{Binding Products}" Margin="10" Grid.Row="1">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <Border BorderBrush="LightGray" BorderThickness="1" CornerRadius="10" Padding="15" Margin="10" Background="#FFFFFF">
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="150"/>
-                                <ColumnDefinition Width="*" />
-                            </Grid.ColumnDefinitions>
+        <ScrollViewer Grid.Row="1" Margin="10">
+            <ItemsControl ItemsSource="{Binding Products}">
+                <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                        <Border Background="White"
+                                CornerRadius="15"
+                                Padding="15"
+                                Margin="0,10"
+                                Effect="{DynamicResource DropShadow}">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
 
-                            <!-- Изображение товара -->
-                            <Image Source="{Binding ImageUrl}"
-                           Width="150"
-                           Height="150"
-                           Stretch="UniformToFill"
-                           Margin="0,0,20,0"
-                           ClipToBounds="True" />
+                                <Border Width="150" Height="150" CornerRadius="10" ClipToBounds="True">
+                                    <Image Source="{Binding ImageUrl}"
+           Stretch="UniformToFill"/>
+                                </Border>
 
-                            <!-- Информация о товаре -->
-                            <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="20" Foreground="#333"/>
-                                <TextBlock Text="{Binding Description}" FontSize="14" TextWrapping="Wrap" Foreground="#555" Margin="0,4,0,4" MaxWidth="500"/>
-                                <TextBlock Text="{Binding Price, StringFormat=Цена: {0:C}}" FontSize="16" Foreground="#007A00" FontWeight="SemiBold"/>
+                                <!-- Информация -->
+                                <StackPanel Grid.Column="1" VerticalAlignment="Center">
+                                    <TextBlock Text="{Binding Name}"
+                                               FontWeight="Bold"
+                                               FontSize="20"
+                                               Foreground="#4B0082"/>
+                                    <TextBlock Text="{Binding Description}"
+                                               FontSize="14"
+                                               TextWrapping="Wrap"
+                                               Foreground="#555"
+                                               Margin="0,6,0,6"
+                                               MaxWidth="480"/>
+                                    <TextBlock Text="{Binding Price, StringFormat=Цена: {0:C}}"
+                                               FontSize="16"
+                                               Foreground="#228B22"
+                                               FontWeight="SemiBold"/>
+                                    <Button Content="Добавить в корзину"
+                                            Command="{Binding DataContext.AddToCartCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
+                                            CommandParameter="{Binding}"
+                                            Margin="0,12,0,0"
+                                            Padding="6,4"
+                                            FontSize="14"
+                                            Width="160"
+                                            Background="#A678F4"
+                                            Foreground="White"
+                                            BorderThickness="0"
+                                            Cursor="Hand"/>
+                                </StackPanel>
+                            </Grid>
+                        </Border>
+                    </DataTemplate>
+                </ItemsControl.ItemTemplate>
+            </ItemsControl>
+        </ScrollViewer>
 
-                                <!-- Кнопка добавления в корзину -->
-                                <Button Content="Добавить в корзину"
-                                Command="{Binding DataContext.AddToCartCommand, RelativeSource={RelativeSource AncestorType=ListBox}}"
-                                CommandParameter="{Binding}"
-                                Margin="0,10,0,0"
-                                Padding="8,4"
-                                FontSize="14"
-                                Width="160"/>
-                            </StackPanel>
-                        </Grid>
-                    </Border>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
-        </ListBox>
-
-
-        <!-- Можно добавить что-то внизу -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="10" Grid.Row="2">
-            <Button Content="Обновить" Width="100" Height="30" Background="Gray"/>
+        <StackPanel Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    Margin="10"
+                    Grid.Row="2">
+            <Button Content="Обновить"
+                    Width="100"
+                    Height="30"
+                    Background="#A678F4"
+                    Foreground="White"
+                    BorderThickness="0"
+                    Cursor="Hand"/>
         </StackPanel>
-
-
     </Grid>
 </UserControl>

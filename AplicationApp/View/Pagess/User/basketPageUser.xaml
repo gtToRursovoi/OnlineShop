@@ -7,47 +7,112 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
-    <Grid Background="#F5F5F5">
+    <UserControl.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#F7F2FA" Offset="0"/>
+            <GradientStop Color="#E6D9F8" Offset="1"/>
+        </LinearGradientBrush>
+    </UserControl.Background>
+
+    <Grid Margin="20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <TextBlock Text="Корзина" FontSize="30" FontWeight="Bold" Margin="20,20,20,10" Foreground="#333" Grid.Row="0"/>
+        <!-- Заголовок -->
+        <TextBlock Text="Корзина" 
+                   FontSize="30" 
+                   FontWeight="Bold" 
+                   Margin="0,0,0,15" 
+                   Foreground="#5D3FD3" 
+                   Grid.Row="0"/>
 
         <!-- Список товаров -->
-        <ListView ItemsSource="{Binding CartItems}" Margin="20" Grid.Row="1" Background="Transparent" BorderThickness="0">
+        <ListView ItemsSource="{Binding CartItems}" 
+                  Grid.Row="1" 
+                  Background="Transparent" 
+                  BorderThickness="0" 
+                  Padding="0" 
+                  Margin="0">
+
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Setter Property="Padding" Value="0"/>
+                    <Setter Property="Margin" Value="0 10"/>
+                    <Setter Property="Background" Value="Transparent"/>
+                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="VerticalContentAlignment" Value="Top"/>
+                </Style>
+            </ListView.ItemContainerStyle>
+
             <ListView.ItemTemplate>
                 <DataTemplate>
-                    <Border BorderBrush="#DDD" BorderThickness="1" CornerRadius="10" Padding="15" Margin="0,10" Background="White">
+                    <Border Background="White" 
+                            CornerRadius="15" 
+                            Padding="15" 
+                            Effect="{DynamicResource DropShadow}" 
+                            BorderBrush="#D1C4E9" BorderThickness="1" 
+                            Margin="0,10,0,10">
                         <Grid>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="120"/>
                                 <ColumnDefinition Width="*"/>
                                 <ColumnDefinition Width="Auto"/>
                                 <ColumnDefinition Width="Auto"/>
                             </Grid.ColumnDefinitions>
 
-                            <!-- Картинка -->
-                            <Image Source="{Binding Product.ImageUrl}" Width="100" Height="100" Stretch="UniformToFill" Margin="0,0,15,0"/>
+                            <!-- Изображение товара -->
+                            <Border Width="120" Height="120" CornerRadius="12" ClipToBounds="True" Margin="0,0,15,0" Background="#F0E9FF">
+                                <Image Source="{Binding Product.ImageUrl}" Stretch="UniformToFill" />
+                            </Border>
 
-                            <!-- Информация -->
+                            <!-- Информация о товаре -->
                             <StackPanel Grid.Column="1" VerticalAlignment="Center">
-                                <TextBlock Text="{Binding Product.Name}" FontSize="16" FontWeight="Bold" Foreground="#222"/>
-                                <TextBlock Text="{Binding Product.Price, StringFormat=Цена: {0:C}}" FontSize="14" Foreground="#444" Margin="0,5,0,0"/>
-                                <TextBlock Text="{Binding Product.Description}" FontSize="12" Foreground="#666" TextWrapping="Wrap" MaxWidth="300"/>
+                                <TextBlock Text="{Binding Product.Name}" 
+                                           FontSize="18" 
+                                           FontWeight="Bold" 
+                                           Foreground="#4B0082" />
+                                <TextBlock Text="{Binding Product.Price, StringFormat=Цена: {0:C}}" 
+                                           FontSize="14" 
+                                           Foreground="#555" 
+                                           Margin="0,6,0,0"/>
+                                <TextBlock Text="{Binding Product.Description}" 
+                                           FontSize="13" 
+                                           Foreground="#777" 
+                                           TextWrapping="Wrap" 
+                                           MaxWidth="320" 
+                                           Margin="0,4,0,0"/>
                             </StackPanel>
 
                             <!-- Количество -->
-                            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="20,0">
+                            <StackPanel Grid.Column="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="30,0">
                                 <Button Content="−"
                                         Command="{Binding DataContext.DecreaseQuantityCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                        CommandParameter="{Binding}" Width="35" Height="35" FontSize="16"/>
-                                <TextBlock Text="{Binding Quantity}" VerticalAlignment="Center" Width="40" FontSize="16" TextAlignment="Center"/>
+                                        CommandParameter="{Binding}"
+                                        Width="38" Height="38" FontSize="20"
+                                        Background="#A678F4" Foreground="White"
+                                        BorderThickness="0" 
+                                        Cursor="Hand"
+                                        Margin="0,0,6,0"
+                                        />
+                                <TextBlock Text="{Binding Quantity}" 
+                                           VerticalAlignment="Center" 
+                                           Width="40" 
+                                           FontSize="16" 
+                                           TextAlignment="Center" 
+                                           Foreground="#4B0082" 
+                                           FontWeight="SemiBold"/>
                                 <Button Content="+"
                                         Command="{Binding DataContext.IncreaseQuantityCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
-                                        CommandParameter="{Binding}" Width="35" Height="35" FontSize="16"/>
+                                        CommandParameter="{Binding}"
+                                        Width="38" Height="38" FontSize="20"
+                                        Background="#A678F4" Foreground="White"
+                                        BorderThickness="0" 
+                                        Cursor="Hand"
+                                        Margin="6,0,0,0"
+                                        />
                             </StackPanel>
 
                             <!-- Удалить -->
@@ -55,21 +120,38 @@
                                     Content="Удалить"
                                     Command="{Binding DataContext.RemoveItemCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                     CommandParameter="{Binding}"
-                                    Height="35" Width="100" Margin="20,0,0,0" VerticalAlignment="Center" Background="#E57373" Foreground="White"/>
+                                    Height="38" Width="110" Margin="20,0,0,0" 
+                                    VerticalAlignment="Center" 
+                                    Background="#E57373" 
+                                    Foreground="White"
+                                    FontWeight="SemiBold"
+                                    BorderThickness="0"
+                                    Cursor="Hand"
+                                    />
                         </Grid>
                     </Border>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
 
-        <!-- Подвал: итого и кнопка -->
-        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="20" Grid.Row="2" VerticalAlignment="Center">
+        <!-- Подвал с итоговой суммой и кнопкой -->
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0" Grid.Row="2" VerticalAlignment="Center" >
             <TextBlock Text="{Binding TotalPrice, StringFormat=Итого: {0:C}}"
-                       FontSize="20" FontWeight="Bold" Foreground="#222" VerticalAlignment="Center" Margin="0,0,20,0"/>
+                       FontSize="22" 
+                       FontWeight="Bold" 
+                       Foreground="#4B0082" 
+                       VerticalAlignment="Center" 
+                       Margin="0,0,25,0"/>
             <Button Content="Оформить заказ"
-                    Width="160" Height="40"
+                    Width="180" Height="45"
                     Command="{Binding PlaceOrderCommand}"
-                    Background="#4CAF50" Foreground="White" FontWeight="SemiBold"/>
+                    Background="#5D3FD3"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    BorderThickness="0"
+                    Cursor="Hand"
+
+                    Padding="6,0"/>
         </StackPanel>
     </Grid>
 </UserControl>
