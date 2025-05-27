@@ -1,89 +1,82 @@
-Отлично! Раз программа полностью написана на **WPF (.NET Desktop)** — это значит, что это десктопное приложение, а не веб. Вот адаптированная версия `README.md` для **онлайн-магазина на WPF**:
-
----
-
 # 🛒 WPF Online Store
 
-Это десктопное приложение онлайн-магазина, разработанное на платформе **.NET с использованием WPF (Windows Presentation Foundation)**. Программа предназначена для локального использования или в составе клиент-серверной архитектуры (если реализовано подключение к API или БД).
+Это десктопное приложение онлайн-магазина, разработанное на платформе **.NET с использованием WPF (Windows Presentation Foundation)**. Программа предназначена для локального использования или как часть клиент-серверного решения.
 
 ## 📌 Основные функции
 
 * Просмотр каталога товаров
-* Поиск и фильтрация по категориям
-* Добавление товаров в корзину
-* Оформление заказов
-* Регистрация и авторизация пользователей
-* Личный кабинет (профиль, история покупок)
-* Панель администратора (CRUD для товаров и заказов)
-* Работа с базой данных (через Entity Framework)
+* Корзина и оформление заказа
+* Регистрация и авторизация
+* Админ-панель для управления товарами и заказами
+* Поддержка ролей пользователей
+* Работа с БД через Entity Framework Core
 
-## 🛠️ Технологии и стек
+## 🛠️ Стек технологий
 
-* **.NET / .NET Core / .NET 6+**
-* **WPF (MVVM архитектура)**
-* **Entity Framework Core**
-* **SQL Server / SQLite / PostgreSQL**
-* **Material Design in XAML Toolkit** *(если используется)*
-* **Dependency Injection**, **ICommand**, **ObservableCollection** и прочие WPF-паттерны
+* .NET 8 
+* WPF с паттерном MVVM
+* Entity Framework Core
+* SQL Server 
+
 
 ## 💻 Требования
 
 * Windows 10/11
-* .NET 6 SDK или выше
-* Visual Studio 2022 или новее
-* SQL Server / SQLite установлен (если используется внешняя БД)
+* .NET SDK (8.0 или выше)
+* Visual Studio 2022+
+* Установленная СУБД Microsoft Sql Server
 
 ## 🚀 Установка и запуск
 
 1. **Клонируйте репозиторий**
 
    ```bash
-   git clone https://github.com/your-username/wpf-online-store.git
+   git clone https://github.com/gtToRursovoi/OnlineShop/tree/Debug
    cd wpf-online-store
    ```
 
 2. **Откройте проект в Visual Studio**
 
-3. **Настройте строку подключения к БД в `appsettings.json` или `App.config`:**
+3. **Настройте строку подключения**
 
-   ```xml
-   <connectionStrings>
-     <add name="DefaultConnection" 
-          connectionString="Server=localhost;Database=OnlineStoreDb;Trusted_Connection=True;" 
-          providerName="System.Data.SqlClient" />
-   </connectionStrings>
+   Строка подключения задаётся вручную в конструкторе класса `ApplicationDbContext.cs`.
+
+   ```csharp
+   protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+   {
+       if (!optionsBuilder.IsConfigured)
+       {
+           optionsBuilder.UseSqlServer("Server=localhost;Database=OnlineStoreDb;Trusted_Connection=True;");
+       }
+   }
    ```
 
-4. **Примените миграции и создайте базу данных (если используется EF Core):**
+   > 💡 Рекомендуется выносить строку подключения в конфигурационный файл или переменные окружения для продакшена.
+
+4. **Примените миграции (если необходимо):**
 
    ```bash
    dotnet ef database update
    ```
 
-5. **Запустите приложение в Visual Studio (F5)**
-
-## 📂 Структура проекта
-
-```
-/Models           - модели данных
-/Views            - XAML представления
-/ViewModels       - логика представлений (MVVM)
-/Services         - работа с данными, API, бизнес-логика
-/Commands         - реализация ICommand
-/App.xaml         - настройки приложения
-/MainWindow.xaml  - стартовое окно
-```
+5. **Запустите приложение (F5 в Visual Studio)**
 
 ## 🧪 Тестирование
-
-Если присутствует модульная логика, можно использовать `xUnit`, `NUnit` или `MSTest`:
 
 ```bash
 dotnet test
 ```
 
+## 📁 Структура проекта
+
+```
+/Models          - классы данных
+/ViewModels      - MVVM логика
+/Views           - XAML интерфейсы
+/Services        - бизнес-логика, работа с БД
+/ApplicationDbContext.cs - контекст базы данных
+```
+
 ## 📄 Лицензия
 
-Проект распространяется под лицензией MIT. См. [LICENSE](./LICENSE).
-
-
+MIT License — см. [LICENSE](./LICENSE)
