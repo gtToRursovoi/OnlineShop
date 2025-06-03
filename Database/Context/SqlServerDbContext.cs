@@ -22,7 +22,7 @@ namespace Database.Context
         }
         public SqlServerDbContext() 
         {
-            Database.EnsureCreated(); 
+            Database.EnsureCreated();
         }
     }
 }
