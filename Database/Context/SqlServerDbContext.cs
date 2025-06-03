@@ -20,5 +20,9 @@ namespace Database.Context
         {
             optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database = OnlineShop");
         }
+        public SqlServerDbContext() 
+        {
+            Database.EnsureCreated();
+        }
     }
 }
