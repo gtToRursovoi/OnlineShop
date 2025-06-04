@@ -57,7 +57,7 @@ namespace AplicationApp.ViewModel.ViewModelWindow
             SessionService.CurrentUserId = currentUser.UserId;
             SessionService.CurrentUserLogin = currentUser.Username;
 
-            if (currentUser.Role == "admin")
+            if (currentUser.Role == "admin"|| currentUser.Role == "Admin")
             {
                 OnSuccess?.Invoke("Добро пожаловать, Админ!");
                 OpenAdminWindow?.Invoke();

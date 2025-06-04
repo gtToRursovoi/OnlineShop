@@ -21,49 +21,7 @@
                           Color="#40000000" 
                           Opacity="0.3"/>
 
-        <Style TargetType="TextBox">
-            <Setter Property="Background" Value="#FFF5F5"/>
-            <Setter Property="BorderBrush" Value="#E1BEE7"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="Margin" Value="0,5,0,15"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Height" Value="40"/>
-        </Style>
-
-        <Style TargetType="PasswordBox">
-            <Setter Property="Background" Value="#FFF5F5"/>
-            <Setter Property="BorderBrush" Value="#E1BEE7"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="10"/>
-            <Setter Property="Margin" Value="0,5,0,15"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Height" Value="40"/>
-        </Style>
-
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="#CE93D8"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="12,8"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Margin" Value="0,10"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Setter Property="Height" Value="45"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#BA68C8"/>
-                    <Setter Property="Foreground" Value="White"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#4A148C"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Margin" Value="0,0,0,5"/>
-        </Style>
+        
     </Window.Resources>
 
     <Border Background="White" 
@@ -98,13 +56,13 @@
                     <TextBlock Text="Имя пользователя"/>
                     <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <TextBlock Text="Email"/>
-                    <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}"/>
+                    <TextBlock Text="Email" Margin="10,0,0,0"/>
+                    <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Width="350"/>
 
                     <TextBlock Text="Пароль"/>
                     <PasswordBox x:Name="PasswordBox" PasswordChanged="PasswordBox_PasswordChanged"/>
 
-                    <TextBlock Text="Подтвердите пароль"/>
+                    <TextBlock Text="Подтвердите пароль" Margin="0,20,0,0"/>
                     <PasswordBox x:Name="ConfirmBox" PasswordChanged="ConfirmBox_PasswordChanged"/>
 
                     <!-- Кнопки -->

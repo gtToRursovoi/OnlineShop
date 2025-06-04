@@ -21,45 +21,7 @@
                           Color="#40000000" 
                           Opacity="0.2"/>
 
-        <Style TargetType="TextBox">
-            <Setter Property="Background" Value="#FFF5F5"/>
-            <Setter Property="BorderBrush" Value="#E1BEE7"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="Margin" Value="0,5,0,15"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-
-        <Style TargetType="PasswordBox">
-            <Setter Property="Background" Value="#FFF5F5"/>
-            <Setter Property="BorderBrush" Value="#E1BEE7"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="Padding" Value="8"/>
-            <Setter Property="Margin" Value="0,5,0,15"/>
-            <Setter Property="FontSize" Value="14"/>
-        </Style>
-
-        <Style TargetType="Button">
-            <Setter Property="Background" Value="#CE93D8"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Padding" Value="12,6"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="FontWeight" Value="SemiBold"/>
-            <Setter Property="Margin" Value="0,10"/>
-            <Setter Property="Cursor" Value="Hand"/>
-            <Style.Triggers>
-                <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="#BA68C8"/>
-                </Trigger>
-            </Style.Triggers>
-        </Style>
-
-        <Style TargetType="TextBlock">
-            <Setter Property="Foreground" Value="#4A148C"/>
-            <Setter Property="FontSize" Value="14"/>
-            <Setter Property="Margin" Value="0,0,0,5"/>
-        </Style>
+        
     </Window.Resources>
 
     <Border Background="White" 
@@ -90,16 +52,17 @@
                            Margin="0,0,0,30"/>
 
                 <!-- Поля ввода -->
-                <TextBlock Text="Имя пользователя"/>
-                <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}"/>
+                <TextBlock Text="Имя пользователя" Margin="10,0,0,0"/>
+                <TextBox Text="{Binding Login, UpdateSourceTrigger=PropertyChanged}" Width="300"/>
 
-                <TextBlock Text="Пароль"/>
-                <PasswordBox x:Name="PasswordBox" PasswordChanged="PasswordBox_PasswordChanged"/>
+                <TextBlock Text="Пароль" Margin="10,0,0,0"/>
+                <PasswordBox x:Name="PasswordBox" PasswordChanged="PasswordBox_PasswordChanged" Margin=" 0,0,0,10" Width="300"/>
 
                 <!-- Кнопки -->
                 <Button Content="Войти" 
                         Command="{Binding LoginCommand}"
-                        Background="#AB47BC"/>
+                        Background="#AB47BC"
+                        Margin=" 0,0,0,10"/>
 
                 <Button Content="Регистрация" 
                         Click="OpenRegWindow"

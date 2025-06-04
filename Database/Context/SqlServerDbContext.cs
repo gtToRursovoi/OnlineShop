@@ -18,11 +18,12 @@ namespace Database.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database = OnlineShop");
+            optionsBuilder.UseSqlServer(@"Server=(localdb)\MSSQLLocalDB;Database = OnlineShopм");
         }
         public SqlServerDbContext() 
         {
-            Database.EnsureCreated(); 
+            Database.EnsureCreated();
+            SeedDefaultUsers();
         }
         private void SeedDefaultUsers()
         {
