@@ -13,7 +13,6 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <StackPanel>
-                <Label  Content="СОСУ ХУЙ ЗА ПРОДУКТЫ" HorizontalAlignment="Center" Margin="10"/>
                 <Button Width="140" Margin="3" Background="Gray" Foreground="Black" Content="Добавить" Click="AddProductButton_Click"/>
                 <Button Width="140" Margin="3" Background="Gray" Foreground="Black" Content="Изменить" Click="EditProductButton_Click"/>
                 <Button Width="140" Margin="3" Background="Gray" Foreground="Black" Content="Удалить"/>
@@ -33,7 +32,7 @@
                                 <StackPanel>
                                     <TextBlock Text="{Binding Name}" FontWeight="Bold" FontSize="16" />
                                     <TextBlock Text="{Binding Description}" TextWrapping="Wrap" MaxWidth="400" />
-                                    <TextBlock Text="{Binding Price, StringFormat='Цена: {0:C}'}" />
+                                    <TextBlock Text="{Binding Price,  StringFormat='Цена за ед.: {0:N2} руб.'}"  />
                                     <TextBlock Text="{Binding Stock, StringFormat='В наличии: {0} шт.'}" />
                                 </StackPanel>
                             </StackPanel>

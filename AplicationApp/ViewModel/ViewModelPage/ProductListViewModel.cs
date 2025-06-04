@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace AplicationApp.ViewModel.ViewModelPage
@@ -17,7 +18,7 @@ namespace AplicationApp.ViewModel.ViewModelPage
         private readonly SqlServerDbContext _context;
 
         public ObservableCollection<Product> Products { get; set; }
-        public Dictionary<int, int> ProductQuantities { get; set; } = new(); // <ProductId, Quantity>
+        public Dictionary<int, int> ProductQuantities { get; set; } = new(); 
         public ICommand AddToCartCommand { get; }
 
         public ProductListViewModel()
@@ -25,7 +26,7 @@ namespace AplicationApp.ViewModel.ViewModelPage
             _context = new SqlServerDbContext();
             Products = new ObservableCollection<Product>(_context.Products.ToList());
 
-            // Заполнить словарь начальными значениями (1 по умолчанию)
+            
             foreach (var product in Products)
             {
                 ProductQuantities[product.ProductId] = 1;
@@ -45,7 +46,7 @@ namespace AplicationApp.ViewModel.ViewModelPage
 
                 if (quantity <= 0)
                 {
-                    return; // Нельзя добавить 0 или меньше
+                    return; 
                 }
 
                 var existingItem = _context.CartItems.FirstOrDefault(c =>
@@ -65,6 +66,7 @@ namespace AplicationApp.ViewModel.ViewModelPage
                     };
 
                     _context.CartItems.Add(cartItem);
+                    MessageBox.Show("Товар добавлен в корзину");
                 }
 
                 _context.SaveChanges();

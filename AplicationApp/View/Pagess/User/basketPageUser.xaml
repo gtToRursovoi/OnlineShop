@@ -74,7 +74,7 @@
                                            FontSize="18" 
                                            FontWeight="Bold" 
                                            Foreground="#4B0082" />
-                                <TextBlock Text="{Binding Product.Price, StringFormat=Цена: {0:C}}" 
+                                <TextBlock Text="{Binding Product.Price, StringFormat='Цена: {0:N0} руб.'}" 
                                            FontSize="14" 
                                            Foreground="#555" 
                                            Margin="0,6,0,0"/>
@@ -136,7 +136,7 @@
 
         <!-- Подвал с итоговой суммой и кнопкой -->
         <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0" Grid.Row="2" VerticalAlignment="Center" >
-            <TextBlock Text="{Binding TotalPrice, StringFormat=Итого: {0:C}}"
+            <TextBlock Text="{Binding TotalPrice, StringFormat='Цена за ед.: {0:N2} руб.'}" 
                        FontSize="22" 
                        FontWeight="Bold" 
                        Foreground="#4B0082" 
@@ -150,7 +150,6 @@
                     FontWeight="Bold"
                     BorderThickness="0"
                     Cursor="Hand"
-
                     Padding="6,0"/>
         </StackPanel>
     </Grid>

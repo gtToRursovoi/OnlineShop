@@ -63,10 +63,10 @@
                                                Foreground="#555"
                                                Margin="0,6,0,6"
                                                MaxWidth="480"/>
-                                    <TextBlock Text="{Binding Price, StringFormat=Цена: {0:C}}"
-                                               FontSize="16"
-                                               Foreground="#228B22"
-                                               FontWeight="SemiBold"/>
+                                    <TextBlock Text="{Binding Price, StringFormat='Цена: {0:N0} руб.'}"
+                                                FontSize="16"
+                                                Foreground="#228B22"
+                                                FontWeight="SemiBold"/>
                                     <Button Content="Добавить в корзину"
                                             Command="{Binding DataContext.AddToCartCommand, RelativeSource={RelativeSource AncestorType=UserControl}}"
                                             CommandParameter="{Binding}"

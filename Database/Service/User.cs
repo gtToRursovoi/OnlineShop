@@ -9,6 +9,15 @@ namespace Database.Service
 {
     public class User
     {
+        public User(string username = null, string email = null, string password = null, string role = null)
+        {
+            
+            Username = username;
+            Email = email;
+            Password = password;
+            Role = role;
+        }
+
         [Key]
         public int UserId { get; set; }
 

@@ -18,6 +18,13 @@ namespace AplicationApp.ViewModel.ViewModelWindow
         private string _password;
         private string _confirmPassword;
         private string _statusMessage;
+        private string _role;
+
+        public string Role 
+        {
+            get => _role;
+            set { _role = value; OnPropertyChanged(); }
+        }
 
         public string Username
         {
@@ -85,7 +92,9 @@ namespace AplicationApp.ViewModel.ViewModelWindow
             {
                 Username = Username,
                 Email = Email,
-                Password = Password // ❗ Хешировать пароль в реальном проекте
+                Password = Password,
+                Role = Role
+
             };
 
             db.Users.Add(user);

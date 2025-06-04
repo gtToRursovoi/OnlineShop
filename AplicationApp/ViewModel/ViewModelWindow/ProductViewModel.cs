@@ -20,7 +20,7 @@ namespace AplicationApp.ViewModel.ViewModelWindow
         private readonly SqlServerDbContext _context;
         private bool _isEditMode;
 
-        public int ProductId { get; set; } // Для редактирования
+        public int ProductId { get; set; } 
 
         public string Name { get; set; }
         public string Description { get; set; }
@@ -39,7 +39,7 @@ namespace AplicationApp.ViewModel.ViewModelWindow
 
                 if (_selectedProduct != null)
                 {
-                    // Переключаемся в режим редактирования
+                    
                     _isEditMode = true;
                     ProductId = _selectedProduct.ProductId;
                     Name = _selectedProduct.Name;
@@ -96,7 +96,7 @@ namespace AplicationApp.ViewModel.ViewModelWindow
             
             if (string.IsNullOrWhiteSpace(Name) || Price <= 0 || Stock < 0)
             {
-                OnError?.Invoke("Пожалуйста, заполните все поля.");
+                MessageBox.Show("Пожалуйста, заполните все поля.");
                 return;
             }
 
@@ -105,7 +105,7 @@ namespace AplicationApp.ViewModel.ViewModelWindow
                 var product = _context.Products.FirstOrDefault(p => p.ProductId == ProductId);
                 if (product == null)
                 {
-                    OnError?.Invoke("Продукт не найден.");
+                    MessageBox.Show("Продукт не найден.");
                     return;
                 }
 
@@ -116,7 +116,7 @@ namespace AplicationApp.ViewModel.ViewModelWindow
                 product.ImageUrl = ImageUrl; // Сохраняем путь к изображению
 
                 _context.SaveChanges();
-                OnSuccess?.Invoke("Продукт успешно обновлён.");
+                MessageBox.Show("Продукт успешно обновлён.");
             }
             else
             {
@@ -131,7 +131,7 @@ namespace AplicationApp.ViewModel.ViewModelWindow
 
                 _context.Products.Add(newProduct);
                 _context.SaveChanges();
-                OnSuccess?.Invoke("Продукт успешно добавлен.");
+                MessageBox.Show("Продукт успешно добавлен.");
                 ClearFields();
             }
         }
@@ -140,7 +140,7 @@ namespace AplicationApp.ViewModel.ViewModelWindow
         {
             if (SelectedProduct == null)
             {
-                OnError?.Invoke("Выберите продукт для удаления.");
+                MessageBox.Show("Выберите продукт для удаления.");
                 return;
             }
 
@@ -149,7 +149,7 @@ namespace AplicationApp.ViewModel.ViewModelWindow
             Products.Remove(SelectedProduct);
             SelectedProduct = null;
 
-            OnSuccess?.Invoke("Продукт успешно удалён.");
+            MessageBox.Show("Продукт успешно удалён.");
             ClearFields();
         }
 
@@ -178,7 +178,7 @@ namespace AplicationApp.ViewModel.ViewModelWindow
             }
             else
             {
-                OnError?.Invoke("Не удалось загрузить продукты.");
+                MessageBox.Show("Не удалось загрузить продукты.");
             }
 
             OnPropertyChanged(nameof(AllProducts));

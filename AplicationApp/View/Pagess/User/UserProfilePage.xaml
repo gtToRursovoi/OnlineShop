@@ -63,7 +63,7 @@
                     FontSize="16"
                     Foreground="#666"
                     Margin="0,0,20,0"/>
-                                        <TextBlock Text="{Binding TotalAmount, StringFormat=Сумма: {0:C}}"
+                                        <TextBlock Text="{Binding TotalAmount,  StringFormat='Цена за ед.: {0:N2} руб.'}" 
                     FontWeight="Bold"
                     FontSize="16"
                     Foreground="#007A00"/>
@@ -92,7 +92,7 @@
                                     Foreground="#555"/>
 
                                                         <!-- Цена -->
-                                                        <TextBlock Text="{Binding PricePerUnit, StringFormat=Цена за ед.: {0:C}}"
+                                                        <TextBlock Text="{Binding PricePerUnit,  StringFormat='Цена за ед.: {0:N2} руб.'}" 
                                     FontSize="14"
                                     Width="180"
                                     Foreground="#555"/>

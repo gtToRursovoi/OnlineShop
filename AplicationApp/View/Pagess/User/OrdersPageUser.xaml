@@ -76,7 +76,7 @@
                                            FontSize="16" 
                                            Foreground="#7B68EE" 
                                            Margin="0,0,20,0" />
-                                <TextBlock Text="{Binding TotalAmount, StringFormat=Сумма: {0:C}}" 
+                                <TextBlock Text="{Binding TotalAmount, StringFormat='Цена: {0:N0} руб.'}" 
                                            FontWeight="Bold" 
                                            FontSize="16" 
                                            Foreground="#228B22" />
@@ -110,7 +110,7 @@
                                                            FontSize="14" 
                                                            Width="130" 
                                                            Foreground="#555" />
-                                                <TextBlock Text="{Binding PricePerUnit, StringFormat=Цена за ед.: {0:C}}" 
+                                                <TextBlock Text="{Binding PricePerUnit, StringFormat='Цена за ед.: {0:N2} руб.'}" 
                                                            FontSize="14" 
                                                            Width="200" 
                                                            Foreground="#555" />
@@ -119,7 +119,6 @@
                                     </DataTemplate>
                                 </ItemsControl.ItemTemplate>
                             </ItemsControl>
-
                         </StackPanel>
                     </Border>
                 </DataTemplate>

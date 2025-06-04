@@ -24,5 +24,20 @@ namespace Database.Context
         {
             Database.EnsureCreated(); 
         }
+        private void SeedDefaultUsers()
+        {
+            if (!Users.Any())
+            {
+                Users.AddRange(new List<User>
+            {
+                new User("admin", "admin@example.com", "admin123", "Admin"),
+                new User("user1", "user1@example.com", "pass1", "Customer"),
+                new User("user2", "user2@example.com", "pass2", "Customer")
+
+            });
+
+                SaveChanges();
+            }
+        }
     }
 }
