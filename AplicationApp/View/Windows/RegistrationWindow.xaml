@@ -20,67 +20,62 @@
                           ShadowDepth="5" 
                           Color="#40000000" 
                           Opacity="0.3"/>
-
-        
     </Window.Resources>
 
-    <Border Background="White" 
-            CornerRadius="15" 
-            BorderThickness="1" 
-            BorderBrush="#E1BEE7"
+    <Border Background="Transparent"
+            CornerRadius="15"
+            BorderThickness="1"
+            BorderBrush="Transparent"
             Effect="{StaticResource ShadowEffect}">
 
-        <Grid>
-            <!-- Фоновый градиент -->
-            <Border  CornerRadius="15">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#FFF5F5" Offset="0"/>
-                        <GradientStop Color="#F3E5F5" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-            </Border>
+        <Grid ClipToBounds="True">
+            <!-- 1. Фоновое изображение с размытием -->
+            <Image Source="/Assets/Image/Back2.jpg" Stretch="Fill" Panel.ZIndex="0">
+                <Image.Effect>
+                    <BlurEffect Radius="10"/>
+                </Image.Effect>
+            </Image>
 
-            <!-- Основной контент -->
-            <ScrollViewer VerticalScrollBarVisibility="Auto">
-                <StackPanel Margin="40" VerticalAlignment="Center">
-                    <!-- Заголовок -->
-                    <TextBlock Text="Регистрация" 
-                               FontSize="24" 
-                               FontWeight="Bold" 
-                               Foreground="#7B1FA2"
-                               HorizontalAlignment="Center"
-                               Margin="0,0,0,20"/>
+            <!-- 2. Затемнение -->
+            <Rectangle Fill="#55FFFFFF" Panel.ZIndex="1"/>
 
-                    <!-- Поля ввода -->
-                    <TextBlock Text="Имя пользователя"/>
-                    <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
+            <!-- 3. Контент с градиентом и формой -->
+            <Grid Panel.ZIndex="2">
+               
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    <StackPanel Margin="40" VerticalAlignment="Center">
+                        <TextBlock Text="Регистрация" 
+                                   FontSize="24" 
+                                   FontWeight="Bold" 
+                                   Foreground="#7B1FA2"
+                                   HorizontalAlignment="Center"
+                                   Margin="0,0,0,20"/>
 
-                    <TextBlock Text="Email" Margin="10,0,0,0"/>
-                    <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Width="350"/>
+                        <TextBlock Text="Имя пользователя"/>
+                        <TextBox Text="{Binding Username, UpdateSourceTrigger=PropertyChanged}"/>
 
-                    <TextBlock Text="Пароль"/>
-                    <PasswordBox x:Name="PasswordBox" PasswordChanged="PasswordBox_PasswordChanged"/>
+                        <TextBlock Text="Email" Margin="10,0,0,0"/>
+                        <TextBox Text="{Binding Email, UpdateSourceTrigger=PropertyChanged}" Width="350"/>
 
-                    <TextBlock Text="Подтвердите пароль" Margin="0,20,0,0"/>
-                    <PasswordBox x:Name="ConfirmBox" PasswordChanged="ConfirmBox_PasswordChanged"/>
+                        <TextBlock Text="Пароль"/>
+                        <PasswordBox x:Name="PasswordBox" PasswordChanged="PasswordBox_PasswordChanged"/>
 
-                    <!-- Кнопки -->
-                    <Button Content="Зарегистрироваться" 
-                            Command="{Binding RegisterCommand}"
-                            Background="#AB47BC"
-                            Margin="0,20,0,10"/>
+                        <TextBlock Text="Подтвердите пароль" Margin="0,20,0,0"/>
+                        <PasswordBox x:Name="ConfirmBox" PasswordChanged="ConfirmBox_PasswordChanged"/>
 
-                    <Button Content="Уже есть аккаунт? Войти" 
-                            Click="Button_Click"
-                            Background="#9C27B0"/>
+                        <Button Content="Зарегистрироваться" 
+                                Command="{Binding RegisterCommand}"
+                                Background="#AB47BC"
+                                Margin="0,20,0,10"/>
 
-                    <!-- Декоративный элемент -->
-                    <Border Height="1" Background="#E1BEE7" Margin="0,20"/>
-                </StackPanel>
-            </ScrollViewer>
+                        <Button Content="Уже есть аккаунт? Войти" 
+                                Click="Button_Click"
+                                Background="#9C27B0"/>
 
-          
+                        <Border Height="1" Background="#E1BEE7" Margin="0,20"/>
+                    </StackPanel>
+                </ScrollViewer>
+            </Grid>
         </Grid>
     </Border>
 </Window>
