@@ -8,17 +8,27 @@
         Title="AddProduct" Height="550" Width="500"
         Background="Pink">
     <Grid>
-        <StackPanel>
-            <Label Content="Имя"/>
-            <TextBox Text="{Binding Name}"/>
-            <Label Content="Описание"/>
-            <TextBox Text="{Binding Description}"/>
-            <Label Content="Цена"/>
-            <TextBox Text="{Binding Price}"/>
-            <Label Content="Количество"/>
-            <TextBox Text="{Binding Stock}"/>
-            <Button Content="Изображение" Command="{Binding SelectImageCommand}" Background="Violet" Margin="10"/>
-            <Button Content="Сохранить" Command="{Binding SaveCommand}" Background="Violet" Margin="10"/>
+        <Image Source="/Assets/Image/Back2.jpg" Stretch="Fill" Panel.ZIndex="0">
+            <Image.Effect>
+                <BlurEffect Radius="10"/>
+            </Image.Effect>
+        </Image>
+        <Rectangle Fill="#66000000" Panel.ZIndex="1"/>
+        <StackPanel Margin="20" Panel.ZIndex="2">
+            <Label Content="Имя" Foreground="White"/>
+            <TextBox Text="{Binding Name}" Margin="0,0,0,10"/>
+
+            <Label Content="Описание" Foreground="White"/>
+            <TextBox Text="{Binding Description}" Margin="0,0,0,10"/>
+
+            <Label Content="Цена" Foreground="White"/>
+            <TextBox Text="{Binding Price}" Margin="0,0,0,10"/>
+
+            <Label Content="Количество" Foreground="White"/>
+            <TextBox Text="{Binding Stock}" Margin="0,0,0,10"/>
+
+            <Button Content="Изображение" Command="{Binding SelectImageCommand}" Background="Violet" Margin="0,10,0,0"/>
+            <Button Content="Сохранить" Command="{Binding SaveCommand}" Background="Violet" Margin="0,10,0,0"/>
         </StackPanel>
     </Grid>
 </Window>

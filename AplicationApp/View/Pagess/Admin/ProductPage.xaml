@@ -13,9 +13,9 @@
         </Grid.ColumnDefinitions>
         <Grid Grid.Column="0">
             <StackPanel>
-                <Button Width="140" Margin="3" Background="Gray" Foreground="Black" Content="Добавить" Click="AddProductButton_Click"/>
-                <Button Width="140" Margin="3" Background="Gray" Foreground="Black" Content="Изменить" Click="EditProductButton_Click"/>
-                <Button Width="140" Margin="3" Background="Gray" Foreground="Black" Content="Удалить"/>
+                <Button Width="140" Margin="3" Background="Pink" Foreground="Black" Content="Добавить" Click="AddProductButton_Click"/>
+                <Button Width="140" Margin="3" Background="Pink" Foreground="Black" Content="Изменить" Click="EditProductButton_Click"/>
+                <Button Width="140" Margin="3" Background="Pink" Foreground="Black" Content="Удалить"/>
             </StackPanel>
         </Grid>
         <Grid Grid.Column="1">
