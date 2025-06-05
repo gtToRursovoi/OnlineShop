@@ -31,15 +31,12 @@
             Effect="{StaticResource ShadowEffect}">
 
         <Grid>
-            <!-- Фоновый градиент -->
-            <Border  CornerRadius="10">
-                <Border.Background>
-                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-                        <GradientStop Color="#FFF5F5" Offset="0"/>
-                        <GradientStop Color="#F3E5F5" Offset="1"/>
-                    </LinearGradientBrush>
-                </Border.Background>
-            </Border>
+            <Image Source="/Assets/Image/Back2.jpg" Stretch="Fill" Panel.ZIndex="0">
+                <Image.Effect>
+                    <BlurEffect Radius="10"/>
+                </Image.Effect>
+            </Image>
+
 
             <!-- Основной контент -->
             <StackPanel Margin="40" VerticalAlignment="Center">
